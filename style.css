@@ -1,0 +1,146 @@
+:root {
+    --purple: hsl(263, 55%, 52%);
+    --blue: hsl(217, 19%, 38%);
+    --pink: hsl(0, 87%, 67%);
+    --yellow: hsl(34, 97%, 64%);
+    --cyan: hsl(212, 24%, 26%);
+    --very-light-gray: hsl(0, 0%, 98%);
+    --light-gray: hsl(0, 0%, 95%);
+    --grayish-blue: hsl(219, 14%, 63%);
+    --black: hsl(0, 0%, 7%);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+    /* 16px */
+}
+
+body {
+    margin: 0;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-size: 0.8125rem;
+    /* ~13px */
+    line-height: 1.5;
+    color: var(--black);
+    background-color: var(--very-light-gray);
+    padding: 2rem;
+}
+
+.testimonials {
+    display: grid;
+    gap: 2rem;
+}
+
+.testimonial {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.testimonial::before {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    background: url('images/bg-pattern-quotation.svg') no-repeat center/contain;
+}
+
+.testimonial__author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.testimonial__author img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.testimonial__author p {
+    margin: 0;
+    font-weight: 600;
+    color: var(--grayish-blue);
+}
+
+.testimonial__author p span {
+    display: block;
+    color: var(--black);
+}
+
+.testimonial__summary {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.testimonial__quote {
+    margin-top: 1rem;
+    color: var(--grayish-blue);
+}
+
+/* Accent borders */
+.testimonial--purple {
+    border-top: 0.25rem solid var(--purple);
+}
+
+.testimonial--blue {
+    border-top: 0.25rem solid var(--blue);
+}
+
+.testimonial--pink {
+    border-top: 0.25rem solid var(--pink);
+}
+
+.testimonial--yellow {
+    border-top: 0.25rem solid var(--yellow);
+}
+
+.testimonial--cyan {
+    border-top: 0.25rem solid var(--cyan);
+}
+
+/* Desktop layout */
+@media (min-width: 69rem) {
+
+    /* ~1110px */
+    body {
+        padding: 4rem;
+    }
+
+    .testimonials {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+            "daniel   daniel   jeanette"
+            "jonathan patrick  kira";
+    }
+
+    .testimonial[data-area="daniel"] {
+        grid-area: daniel;
+    }
+
+    .testimonial[data-area="jeanette"] {
+        grid-area: jeanette;
+    }
+
+    .testimonial[data-area="jonathan"] {
+        grid-area: jonathan;
+    }
+
+    .testimonial[data-area="patrick"] {
+        grid-area: patrick;
+    }
+
+    .testimonial[data-area="kira"] {
+        grid-area: kira;
+    }
+}
