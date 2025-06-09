@@ -33,17 +33,17 @@ body {
     font-size: 0.8125rem;
     /* 13px */
     line-height: 1.6;
-    background-color: var(--grey-100);
+    /* background-color: var(--grey-100); */
     color: var(--black);
 }
 
 /* visually hidden for accessibility */
 .visually-hidden {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    width: 0.0625rem;
+    height: 0.0625rem;
     padding: 0;
-    margin: -1px;
+    margin: -0.0625rem;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
@@ -122,8 +122,9 @@ body {
 
 .testimonial__role {
     margin: 0;
-    color: var(--grey-400);
+    /* color: var(--grey-400); */
     font-size: 0.875rem;
+    opacity: 0.75;
 }
 
 /* summary */
@@ -167,7 +168,8 @@ body {
 
     /* ~1104px */
     body {
-        padding: 4rem 15rem;
+        padding: 15rem;
+ 
     }
 
     .testimonials {
