@@ -1,15 +1,20 @@
 :root {
-    --purple: hsl(263, 55%, 52%);
-    --blue: hsl(217, 19%, 38%);
-    --pink: hsl(0, 87%, 67%);
-    --yellow: hsl(34, 97%, 64%);
-    --cyan: hsl(212, 24%, 26%);
-    --very-light-gray: hsl(0, 0%, 98%);
-    --light-gray: hsl(0, 0%, 95%);
-    --grayish-blue: hsl(219, 14%, 63%);
+    /* Primaries */
+    --purple-50: hsl(260, 100%, 95%);
+    --purple-300: hsl(264, 82%, 80%);
+    --purple-500: hsl(263, 55%, 52%);
+    /* Neutrals */
+    --white: hsl(0, 0%, 100%);
+    --grey-100: hsl(214, 17%, 92%);
+    --grey-200: hsl(0, 0%, 81%);
+    --grey-400: hsl(224, 10%, 45%);
+    --grey-500: hsl(217, 19%, 35%);
+    --dark-blue: hsl(219, 29%, 14%);
     --black: hsl(0, 0%, 7%);
 }
 
+
+/* reset & base */
 *,
 *::before,
 *::after {
@@ -23,117 +28,167 @@ html {
 
 body {
     margin: 0;
+    padding: 2rem;
     font-family: 'Barlow Semi Condensed', sans-serif;
     font-size: 0.8125rem;
-    /* ~13px */
-    line-height: 1.5;
+    /* 13px */
+    line-height: 1.6;
+    background-color: var(--grey-100);
     color: var(--black);
-    background-color: var(--very-light-gray);
-    padding: 2rem;
 }
 
+/* visually hidden for accessibility */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* grid container */
 .testimonials {
     display: grid;
+    grid-template-columns: 1fr;
     gap: 2rem;
 }
 
+/* each card */
 .testimonial {
-    background-color: #fff;
-    padding: 2rem;
+    /* existing properties… */
+    background-color: var(--white);
     border-radius: 0.5rem;
+    padding: 2rem;
     position: relative;
+
+    /* new shadow */
+    box-shadow: 2rem 4rem 1rem rgba(0, 0, 0, 0.1);
 }
 
-.testimonial::before {
-    content: '';
-    position: absolute;
-    top: -0.5rem;
-    right: 1rem;
-    width: 2rem;
-    height: 2rem;
-    background: url('images/bg-pattern-quotation.svg') no-repeat center/contain;
+
+/* colored backgrounds */
+.testimonial--purple {
+    background-color: var(--purple-500);
+    color: var(--white);
+}
+
+.testimonial--blue {
+    background-color: var(--grey-500);
+    color: var(--white);
+}
+
+.testimonial--dark {
+    background-color: var(--dark-blue);
+    color: var(--white);
+}
+
+/* author & heading */
+.testimonial__header {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 40rem) {
+    .testimonial__header {
+        display: flex;
+
+    }
 }
 
 .testimonial__author {
     display: flex;
     align-items: center;
-    gap: 1rem;
 }
 
 .testimonial__author img {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
+    flex-shrink: 0;
 }
 
-.testimonial__author p {
+.testimonial__author-info {
+    margin-left: 1rem;
+}
+
+.testimonial__name {
+    font-weight: 600;
     margin: 0;
-    font-weight: 600;
-    color: var(--grayish-blue);
 }
 
-.testimonial__author p span {
-    display: block;
-    color: var(--black);
+.testimonial__role {
+    margin: 0;
+    color: var(--grey-400);
+    font-size: 0.875rem;
 }
 
+/* summary */
 .testimonial__summary {
-    margin-top: 1rem;
-    font-size: 1rem;
+    margin: 1rem 0 0;
     font-weight: 600;
+    line-height: 1.3;
+    color: inherit;
+    /* white on colored cards, black on white */
+    font-size: 1.125rem;
+    position: relative;
+    z-index: 1;
 }
 
-.testimonial__quote {
-    margin-top: 1rem;
-    color: var(--grayish-blue);
+/* make Daniel’s summary extra-large */
+.testimonial--purple .testimonial__summary {
+    font-size: 1.5rem;
 }
 
-/* Accent borders */
-.testimonial--purple {
-    border-top: 0.25rem solid var(--purple);
+/* body text */
+.testimonial__text {
+    margin-top: 1.5rem;
+    color: inherit;
+    /* gray on white cards, white on colored */
+    font-size: 0.875rem;
+    line-height: 1.6;
 }
 
-.testimonial--blue {
-    border-top: 0.25rem solid var(--blue);
+/* quotation mark before the paragraph */
+.testimonial__text::before {
+    content: '“';
+    font-size: 1.5rem;
+    line-height: 1;
+    vertical-align: text-top;
+    margin-right: 0.5rem;
+    color: inherit;
 }
 
-.testimonial--pink {
-    border-top: 0.25rem solid var(--pink);
-}
-
-.testimonial--yellow {
-    border-top: 0.25rem solid var(--yellow);
-}
-
-.testimonial--cyan {
-    border-top: 0.25rem solid var(--cyan);
-}
-
-/* Desktop layout */
+/* desktop layout */
 @media (min-width: 69rem) {
 
-    /* ~1110px */
+    /* ~1104px */
     body {
-        padding: 4rem;
+        padding: 4rem 15rem;
     }
 
     .testimonials {
-        grid-template-columns: repeat(3, 1fr);
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(4, 1fr);
         grid-template-areas:
-            "daniel   daniel   jeanette"
-            "jonathan patrick  kira";
+            "daniel   daniel   jonathan kira"
+            "jeanette patrick  patrick  kira";
     }
 
     .testimonial[data-area="daniel"] {
         grid-area: daniel;
     }
 
-    .testimonial[data-area="jeanette"] {
-        grid-area: jeanette;
-    }
-
     .testimonial[data-area="jonathan"] {
         grid-area: jonathan;
+    }
+
+    .testimonial[data-area="jeanette"] {
+        grid-area: jeanette;
     }
 
     .testimonial[data-area="patrick"] {
@@ -142,5 +197,18 @@ body {
 
     .testimonial[data-area="kira"] {
         grid-area: kira;
+    }
+
+    /* large quotation pattern on the purple card */
+    .testimonial--purple::after {
+        content: '';
+        position: absolute;
+        top: 0rem;
+        right: 4rem;
+        width: 8rem;
+        height: 8rem;
+        background: url('images/bg-pattern-quotation.svg') no-repeat center/contain;
+        /* opacity: 0.1; */
+        pointer-events: none;
     }
 }
